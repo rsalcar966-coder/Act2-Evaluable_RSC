@@ -58,5 +58,3 @@ function main() {
         }
     } while (opcion !== "M");
 }
-
-main();
