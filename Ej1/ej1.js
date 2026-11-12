@@ -1,12 +1,12 @@
 let notas = [];
 
 function introducirAlPrincipio() {
-    let nota = Number(prompt("Introduce la nota:"));
+    let nota = window.prompt("Introduce la nota:");
     notas.unshift(nota);
 }
 
 function introducirAlFinal() {
-    let nota = Number(prompt("Introduce la nota:"));
+    let nota = window.prompt("Introduce la nota:");
     notas.push(nota);
 }
 
