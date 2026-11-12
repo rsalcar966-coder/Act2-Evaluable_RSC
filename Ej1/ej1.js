@@ -1,21 +1,12 @@
 let notas = [];
 
-function introducirAlPrincipio() {
-    let nota = window.prompt("Introduce la nota:");
-    notas.unshift(nota);
-}
 
-function introducirAlFinal() {
-    let nota = window.prompt("Introduce la nota:");
-    notas.push(nota);
-}
 
 function main() {
     let opcion;
 
     do {
-        opcion = prompt(
-            "NOTAS: [" + notas.join(" ") + "]\n" +
+        opcion = window.prompt(
             "A. Introducir una nota al principio\n" +
             "B. Introducir una nota al final\n" +
             "M. Salir"
@@ -23,11 +14,12 @@ function main() {
 
         switch (opcion) {
             case "A":
-                introducirAlPrincipio();
+                let a = window.prompt("Introduce la nota:");
+                notas.unshift(nota);
                 break;
             case "B":
-                introducirAlFinal();
-                break;
+                let b = window.prompt("Introduce la nota:");
+                notas.push(nota); break;
             case "C":
 
                 break;
