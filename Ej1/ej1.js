@@ -53,8 +53,7 @@ function main() {
             case "M":
                 alert("Programa finalizado.");
                 break;
-            default:
-                alert("Opción no válida.");
+
         }
     } while (opcion !== "M");
 }
