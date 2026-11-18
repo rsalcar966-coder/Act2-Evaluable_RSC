@@ -23,7 +23,7 @@ do {
             case "A":
                 const isbnNuevo = window.prompt("Introduce el ISBN del libro:");
                 if (catalogoBiblioteca.has(isbnNuevo)) {
-                    console.log("Error: Ese ISBN ya está registrado.");
+                    console.log("Error: Ese ISBN ya está registrado");
                 } else {
                     const tituloLibro = window.prompt("Introduce el título:");
                     const autorLibro = window.prompt("Introduce el autor:");
@@ -69,23 +69,83 @@ do {
                 break;
 
             case "E":
-
+                const isbnModificar = window.prompt("Introduce el ISBN a modificar:");
+                if (catalogoBiblioteca.has(isbnModificar)) {
+                    const nuevaCantidad = parseInt(window.prompt("Introduce la nueva cantidad de ejemplares:"));
+                    if (nuevaCantidad >= 0) {
+                        const libroActualizar = catalogoBiblioteca.get(isbnModificar);
+                        libroActualizar.ejemplares = nuevaCantidad;
+                        catalogoBiblioteca.set(isbnModificar, libroActualizar);
+                        console.log("Ejemplares actualizados correctamente.");
+                    }
+                } else {
+                    console.log("No se ha encontrado el ISBN.");
+                }
                 break;
 
             case "F":
-
+                const autorBuscar = window.prompt("Introduce el nombre del autor:");
+                let contadorLibros = 0;
+                for (let [clave, valor] of catalogoBiblioteca) {
+                    if (valor.autor.toLowerCase() === autorBuscar.toLowerCase()) {
+                        console.log(`- ${valor.titulo} (ISBN: ${clave})`);
+                        contadorLibros++;
+                    }
+                }
+                if (contadorLibros === 0) {
+                    console.log("No hay libros registrados de ese autor");
+                }
                 break;
 
             case "G":
-
+                const isbnPrestar = window.prompt("Introduce el ISBN del libro a prestar:");
+                if (catalogoBiblioteca.has(isbnPrestar)) {
+                    const libroPrestar = catalogoBiblioteca.get(isbnPrestar);
+                    if (libroPrestar.ejemplares > 0) {
+                        libroPrestar.ejemplares--;
+                        catalogoBiblioteca.set(isbnPrestar, libroPrestar);
+                        console.log("Prestamo realizado con éxito.");
+                    } else {
+                        console.log("Operación denegada: No quedan ejemplares disponibles.");
+                    }
+                } else {
+                    console.log("El libro no existe en el catálogo.");
+                }
                 break;
 
             case "H":
-
+                const isbnDevolver = window.prompt("Introduce el ISBN del libro a devolver:");
+                if (catalogoBiblioteca.has(isbnDevolver)) {
+                    const libroDevolver = catalogoBiblioteca.get(isbnDevolver);
+                    libroDevolver.ejemplares++;
+                    catalogoBiblioteca.set(isbnDevolver, libroDevolver);
+                    console.log("Devolución procesada correctamente.");
+                } else {
+                    console.log("El ISBN no pertenece a nuestra biblioteca.");
+                }
                 break;
 
             case "I":
+                if (catalogoBiblioteca.size === 0) {
+                    console.log("No hay estadísticas porque el catálogo esta vacio.");
+                } else {
+                    let sumatorioEjemplares = 0;
+                    let tituloMasCopias = "";
+                    let recordCopias = -1;
 
+                    for (let [clave, valor] of catalogoBiblioteca) {
+                        sumatorioEjemplares += valor.ejemplares;
+                        
+                        if (valor.ejemplares > recordCopias) {
+                            recordCopias = valor.ejemplares;
+                            tituloMasCopias = valor.titulo;
+                        }
+                    }
+                    
+                    console.log(`Total de títulos registrados: ${catalogoBiblioteca.size}`);
+                    console.log(`Total de ejemplares físicos: ${sumatorioEjemplares}`);
+                    console.log(`Libro con más disponibilidad: ${tituloMasCopias} (${recordCopias} copias)`);
+                }
                 break;
 
             case "J":
@@ -96,6 +156,10 @@ do {
             case "K":
                 aplicacionActiva = false;
                 console.log("Saliendo de la aplicación...");
+                break;
+
+            default:
+                console.log("Opción no válida.");
                 break;
         }
     }
