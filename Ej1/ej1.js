@@ -81,6 +81,70 @@ do {
                 }
                 break;
 
+            case "G":
+                if (calificaciones.length > 0) {
+                    calificaciones.shift();
+                    console.log("Primera calificación borrada.");
+                } else {
+                    console.log("El listado ya está vacío.");
+                }
+                console.table(calificaciones);
+                break;
+
+            case "H":
+                if (calificaciones.length >= 2) {
+                    calificaciones.splice(1, 1);
+                    console.log("Segunda calificación borrada.");
+                } else {
+                    console.log("No existe una segunda calificación para borrar.");
+                }
+                console.table(calificaciones);
+                break;
+
+            case "I":
+                for(let i = 0; i < calificaciones.length; i++) {
+                    if (calificaciones[i] < 5) {
+                        calificaciones[i] = 0;
+                    }
+                }
+                console.log("Suspensos convertidos a 0.");
+                console.table(calificaciones);
+                break;
+
+            case "J":
+                const valorAntiguo = parseFloat(window.prompt("Nota que deseas sustituir:"));
+                const valorNuevo = pedirCalificacion();
+                for(let i = 0; i < calificaciones.length; i++) {
+                    if (calificaciones[i] === valorAntiguo) {
+                        calificaciones[i] = valorNuevo;
+                    }
+                }
+                console.log(`Sustituidos los valores ${valorAntiguo} por ${valorNuevo}.`);
+                console.table(calificaciones);
+                break;
+
+            case "K":
+                const notaInsertar = pedirCalificacion();
+                const posicion = parseInt(window.prompt("Introduce la posición (0 es el principio):"));
+                if (posicion >= 0 && posicion <= calificaciones.length) {
+                    calificaciones.splice(posicion, 0, notaInsertar);
+                    console.log(`Calificación ${notaInsertar} introducida en posición ${posicion}.`);
+                } else {
+                    console.log("La posición introducida no es válida.");
+                }
+                console.table(calificaciones);
+                break;
+
+            case "L":
+                let totalSuspensos = 0;
+                for(let numero of calificaciones) {
+                    if (numero < 5) {
+                        totalSuspensos++;
+                    }
+                }
+                console.log(`Cantidad total de suspensos: ${totalSuspensos}`);
+                break;
+
             case "M":
                 finalizar = true;
                 console.log("¡Cerrando el sistema!");
