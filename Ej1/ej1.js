@@ -22,9 +22,9 @@ do {
     );
 
     if (eleccion !== null) {
-        
+
         switch (eleccion.toUpperCase()) {
-            
+
             case "A":
                 const valorInicio = pedirCalificacion();
                 calificaciones.unshift(valorInicio);
@@ -41,9 +41,9 @@ do {
 
             case "C":
                 const extra = pedirAumento();
-                for(let i = 0; i < calificaciones.length; i++) {
+                for (let i = 0; i < calificaciones.length; i++) {
                     calificaciones[i] += extra;
-                    if(calificaciones[i] > 10) {
+                    if (calificaciones[i] > 10) {
                         calificaciones[i] = 10;
                     }
                 }
@@ -73,7 +73,7 @@ do {
                 if (cantidad > 0) {
                     const notaFija = pedirCalificacion();
                     calificaciones.length = 0;
-                    for(let i = 0; i < cantidad; i++) {
+                    for (let i = 0; i < cantidad; i++) {
                         calificaciones.push(notaFija);
                     }
                     console.log(`Generadas ${cantidad} calificaciones con valor ${notaFija}.`);
@@ -102,7 +102,7 @@ do {
                 break;
 
             case "I":
-                for(let i = 0; i < calificaciones.length; i++) {
+                for (let i = 0; i < calificaciones.length; i++) {
                     if (calificaciones[i] < 5) {
                         calificaciones[i] = 0;
                     }
@@ -114,7 +114,7 @@ do {
             case "J":
                 const valorAntiguo = parseFloat(window.prompt("Nota que deseas sustituir:"));
                 const valorNuevo = pedirCalificacion();
-                for(let i = 0; i < calificaciones.length; i++) {
+                for (let i = 0; i < calificaciones.length; i++) {
                     if (calificaciones[i] === valorAntiguo) {
                         calificaciones[i] = valorNuevo;
                     }
@@ -137,7 +137,7 @@ do {
 
             case "L":
                 let totalSuspensos = 0;
-                for(let numero of calificaciones) {
+                for (let numero of calificaciones) {
                     if (numero < 5) {
                         totalSuspensos++;
                     }
@@ -149,7 +149,7 @@ do {
                 finalizar = true;
                 console.log("¡Cerrando el sistema!");
                 break;
-                
+
             default:
                 console.log("Opción no válida.");
                 break;
@@ -183,8 +183,8 @@ function pedirAumento() {
 
 function obtenerMaximo(array) {
     let max = -Infinity;
-    for(let numero of array) {
-        if(numero > max) {
+    for (let numero of array) {
+        if (numero > max) {
             max = numero;
         }
     }
@@ -193,8 +193,8 @@ function obtenerMaximo(array) {
 
 function obtenerMinimo(array) {
     let min = Infinity;
-    for(let numero of array) {
-        if(numero < min) {
+    for (let numero of array) {
+        if (numero < min) {
             min = numero;
         }
     }
@@ -203,7 +203,7 @@ function obtenerMinimo(array) {
 
 function obtenerMedia(array) {
     let acumulado = 0;
-    for(let numero of array) {
+    for (let numero of array) {
         acumulado += numero;
     }
     return acumulado / array.length;
@@ -212,15 +212,15 @@ function obtenerMedia(array) {
 function obtenerModa(array) {
     let modaResultante = array[0];
     let contadorMaximo = 0;
-    
-    for(let num1 of array) {
+
+    for (let num1 of array) {
         let contadorActual = 0;
-        for(let num2 of array) {
-            if(num1 === num2) {
+        for (let num2 of array) {
+            if (num1 === num2) {
                 contadorActual++;
             }
         }
-        if(contadorActual > contadorMaximo) {
+        if (contadorActual > contadorMaximo) {
             contadorMaximo = contadorActual;
             modaResultante = num1;
         }
